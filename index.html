@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1인자의 날씨요정</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=078c8f2673d76eb8bf8580ab7f3c8691&libraries=services"></script>
+  <script src="https://kit.fontawesome.com/9698826605.js" crossorigin="anonymous"></script>
+  <script defer src="./js/tips.js"></script>
+  <script defer src="./js/date.js"></script>
+  <script defer src="./js/initialState.js"></script>
+  <script defer src="./js/weather.js"></script>
+  <script defer src="./js/todo.js"></script>
+  <script defer src="./js/dday.js"></script>
+  <script defer src="./js/airpollution.js"></script>
+  <script defer src="./js/slide.js"></script>
+  <script defer src="./js/recommend.js"></script>
+  <script defer src="./js/map.js"></script>
+  <script defer src="./js/recipe.js"></script>
+
+
+</head>
+<body>
+  <div id="wrap">
+    <header>
+      <div class="headcont">
+        <h1 onclick="location.reload()" title="Refresh">1인자의 날씨요정
+          <i class="fa-solid fa-clover"></i>
+        </h1>
+        <p>
+          <i class="fa-solid fa-circle-info"></i>
+          <span class="tip">세탁할 때는 일반 식초가 아니라 화이트 식초를 사용해야 해요!</span>
+          -<span class="tipGroup">세탁</span>-
+        </p>
+        <i class="fa-solid fa-recycle"></i>
+        <div class="hiddenTip">
+          <h2>생활의 팁 추천!</h2>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="">Main</a></li>
+          <li><a href="#">Todo</a></li>
+          <li><a href="#">Dday</a></li>
+          <li><a href="#">Map</a></li>
+          <li><a href="#">Recipe</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="weather">
+        <h2>
+          <span class="date">2000.01.01 (월) 12:00:00 AM</span>
+        </h2>
+
+        <article class="current">
+          <h3>현재 <span class="city">미금역</span>의 날씨는?</h3>
+          <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="현재날씨이미지">
+          <div class="currentInfo">
+            <p>기온 <span class="temp"></span></p>
+            <p>습도지수 <span class="hum"></span></p>
+            <p>미세먼지 <span class="airPollution"></span></p>
+          </div>
+        </article>
+
+        <article class="today">
+          <h3>오늘 날씨</h3>
+          <div class="weathers">
+              <div class="mini">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="#">
+                <div class="inform">
+                  <p>0시</p>
+                  <p><span class="temp">0</span>°</p>
+                  <p><span class="hum">0</span>%</p>
+                </div>
+              </div>
+              <div class="mini">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="#">
+                <div class="inform">
+                  <p>0시</p>
+                  <p><span class="temp">0</span>°</p>
+                  <p><span class="hum">0</span>%</p>
+                </div>
+              </div><!-- .mini -->
+          </div><!-- .weathers -->
+        </article>
+
+        <article class="fourDays">
+          <h3>날씨 예보(12PM 기준)</h3>
+          <div class="weathers">
+            <i class="fa-solid fa-chevron-left prev"></i>
+            <div class="slide">
+              <div class="mini">
+                <h4>1일</h4>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
+                <div class="inform">
+                  <p><span class="temp">0</span>°</p>
+                  <p><span class="hum">0</span>%</p>
+                </div>
+              </div>
+              <div class="mini">
+                <h4>1일</h4>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
+                <div class="inform">
+                  <p><span class="temp">0</span>°</p>
+                  <p><span class="hum">0</span>%</p>
+                </div>
+              </div>
+              <div class="mini">
+                <h4>1일</h4>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
+                <div class="inform">
+                  <p><span class="temp">0</span>°</p>
+                  <p><span class="hum">0</span>%</p>
+                </div>
+              </div>
+              <div class="mini">
+                <h4>1일</h4>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="">
+                <div class="inform">
+                  <p><span class="temp">0</span>°</p>
+                  <p><span class="hum">0</span>%</p>
+                </div>
+              </div>
+            </div>
+          <i class="fa-solid fa-chevron-right next"></i>
+          </div><!-- .weathers -->
+        </article>
+        <h5><!-- 빨래 날씨 아닌 때만 출력 -->
+          <i class="fa-solid fa-droplet"></i>
+          빨래하기에 안좋은 날씨에요
+          <i class="fa-solid fa-droplet"></i>
+        </h5>
+      </section>
+
+      <div class="container">
+        <section class="recommend">
+          <h2>오늘의 추천 리스트</h2>
+          <ul class="list">
+            <!-- <li>
+              <i class="insert fa-solid fa-circle-check"></i>
+              <i class="insert fa-regular fa-circle"></i>
+              <h3>우산 챙기기</h3>
+              <i class="fa-solid fa-trash-can"></i>
+            </li> -->
+          </ul>
+        </section>
+
+        <section class="todo">
+          <h2 class="sr-only">해야 할 일들</h2>
+          <form name="frmTodoAdd" class="on"  autocomplete="off">
+            <label for="todoAdd" class="sr-only">할 일 입력</label>
+            <input type="text" name="todoAdd" id="todoAdd" placeholder="추가할 Todo 제목을 입력해주세요~">
+            <button>확인</button>
+            <i class="fa-solid fa-calendar-xmark"></i>
+          </form>
+          <form name="frmTodoEdit"  autocomplete="off">
+            <label for="todoEdit" class="sr-only">할 일 수정</label>
+            <input type="text" name="todoEdit" id="todoEdit" placeholder="수정할 Todo 제목을 입력해주세요~">
+            <button>확인</button>
+            <i class="fa-solid fa-calendar-xmark" ></i>
+          </form>
+
+          <ul class="list">
+            <!-- <li id="0">
+             <i class="insert fa-solid fa-circle-check"></i>
+              <i class="insert fa-regular fa-circle"></i>
+              <h3>투두프로젝트</h3>
+              <i class="fa-solid fa-file-pen"></i>
+              <i class="fa-solid fa-trash-can"></i>
+            </li> -->
+          </ul>
+        </section>
+
+        <section class="dday">
+          <h2 class="sr-only">디데이</h2>
+          
+          <form name="frmDdayAdd" class="on" autocomplete="off">
+            <label for="ddayAddTit" class="sr-only">디데이추가 </label>
+            <input type="text" name="ddayAddTit" id="ddayAddTit" placeholder="Dday 제목을 입력해주세요!">
+            <input type="date" name="ddayAddDate" id="ddayAddDate">
+            <button>확인</button>
+            <i class="fa-solid fa-calendar-xmark"></i>
+          </form>
+
+          <form name="frmDdayEdit" autocomplete="off">
+            <label for="ddayEditTit"></label>
+            <input type="text" name="ddayEditTit" id="ddayEditTit" placeholder="수정할 제목을 입력해주세요!">
+            <input type="date" name="ddayEditDate" id="ddayEditDate">
+            <button>확인</button>
+            <i class="fa-solid fa-calendar-xmark"></i>
+          </form>
+
+          <ul class="list">
+            <!-- <li id="0">
+              <h3 class="ddays">디데이</h3>
+              <p>제목</p>
+              <i class="fa-solid fa-file-pen"></i>
+              <i class="fa-solid fa-trash-can"></i>
+            </li>
+            <li id="0" class="after">
+              <h3>
+                <span class="tit">[청소]한 지</span>
+                <span class="afterDay">10일째</span>
+              </h3>
+              <i class="fa-solid fa-file-pen"></i>
+              <i class="fa-solid fa-trash-can"></i>
+            </li> -->
+          </ul>
+        </section>
+      </div>
+    </main>
+   
+    <section class="map">
+      <h2>우리 동네 알아보기</h2>
+      <ul class="keyword">
+        <li>편의점</li>
+        <li>음식점</li>
+        <li>카페</li>
+        <li>빨래방</li>
+        <li>미용실</li>
+        <li>은행</li>
+        <li>마트</li>
+      </ul>
+      <div class="mapContainer">
+        <div class="myTownMap"></div><!-- 지도 나오는 div -->
+        <div id="menu_wrap">
+          <div class="option">
+            <div>
+              <form name="search" onsubmit="return false" autocomplete="off">
+                <label for="search">검색어</label>
+                <input type="text" name="search" id="search" placeholder="찾는 장소를 입력해주세요.">
+                <button>검색</button>
+              </form>
+            </div>
+            <ul class="placeList"></ul><!-- 주소 목록 -->
+          </div><!-- .option -->
+        </div><!-- #menu_wrap -->
+      </div><!-- .mapContainer -->
+    </section>
+
+    <section class="recipe">
+      <h2>오늘은 내가 요리사~!</h2>
+      <div class="recipeCont">
+        <div class="infoRecipe">
+          <h3>메뉴 : 
+            <span class="menu">비빔밥</span>
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </h3>
+          <p class="sum">요약설명</p>
+          <p>난이도 : <span class="level"></span></p>
+          <p>소요시간 : <span class="cookingTime">1분</span></p>
+          <p class="qnt">1인분 기준</p>
+          <p class="group">한국식</p>
+        </div>
+        <div class="orderRecipe">
+          <h3>요리 순서</h1>
+          <ol></ol><!-- 순서 나오는 목록 -->
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <address>&copy;Designed by Sujin</address>
+    </footer>
+   
+  </div>
+</body>
+</html>
